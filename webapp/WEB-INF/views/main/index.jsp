@@ -10,12 +10,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script> -->
-<!-- 	<script src="/upa/theme/js/owl.carousel.min.js"></script> -->
-	<!-- <script src="/upa/theme/js/bootstrap.min.js"></script> -->
-	<!-- <script src="/upa/theme/js/plugins.js"></script> -->
-	<!-- <script src="/upa/theme/js/main.js"></script> -->
 
 <link
 	href='http://fonts.googleapis.com/css?family=Raleway:400,100,300,700,600,500'
@@ -24,12 +18,12 @@
 	href='http://fonts.googleapis.com/css?family=Droid+Serif:400,400italic,700'
 	rel='stylesheet' type='text/css'>
 
-<link rel="stylesheet" href="/upa/theme/css/slicknav.css">
-<link rel="stylesheet" href="/upa/theme/css/owl.theme.css">
-<link rel="stylesheet" href="/upa/theme/css/owl.carousel.css">
-<link rel="stylesheet" href="/upa/theme/css/owl.transitions.css">
-<link rel="stylesheet" href="/upa/theme/css/font-awesome.min.css">
-<link rel="stylesheet" href="/upa/resources/webjars/bootstrap-3.3.2-dist/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="/upa/theme/css/slicknav.css">-->
+<!-- <link rel="stylesheet" href="/upa/theme/css/owl.theme.css">-->
+<!--<link rel="stylesheet" href="/upa/theme/css/owl.carousel.css">-->
+<!--<link rel="stylesheet" href="/upa/theme/css/owl.transitions.css">-->
+<!--<link rel="stylesheet" href="/upa/theme/css/font-awesome.min.css"> -->
+<!-- <link rel="stylesheet" href="/upa/resources/webjars/bootstrap-3.3.2-dist/css/bootstrap.min.css"> -->
 <link rel="stylesheet" href="/upa/theme/css/main.css">
 <link rel="stylesheet" href="/upa/theme/css/responsive.css">
 
@@ -536,6 +530,14 @@
 	</div>
 	<!-- .container --> </section>
 	<!-- #footer -->
+
+	<<!-- script
+		src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script> -->
+	<script src="/upa/theme/js/owl.carousel.min.js"></script>
+	<script src="/upa/theme/js/bootstrap.min.js"></script>
+	<script src="/upa/theme/js/plugins.js"></script>
+	<script src="/upa/theme/js/main.js"></script>
 
 	<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 	<script>

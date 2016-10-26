@@ -11,7 +11,7 @@
 <script src="/upa/theme/js/vendor/modernizr-2.6.2.min.js"></script>
 
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="/upa/resources/webjars/bootstrap-3.3.2-dist/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="/upa/resources/webjars/bootstrap-3.3.2-dist/css/bootstrap.min.css"> -->
 <link rel="stylesheet" href="/upa/theme/css/main.css">
 <link rel="stylesheet" href="/upa/theme/css/responsive.css">
 <link rel="stylesheet" href="/upa/assets/css/main.css">
@@ -22,7 +22,7 @@
 	<section id="header">
 	<div class="container upa">
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-md-7">
 				<div class="block-left">
 					<nav class="navbar navbar-default" role="navigation">
 					<div class="container-fluid">
@@ -36,7 +36,7 @@
 									class="icon-bar"></span>
 							</button>
 							<div class="nav-logo">
-								<a href="#"><img src="/upa/assets/images/main/home_title.png" alt="logo"></a>
+								<a href="#"><img src="/upa/assets/images/main/upa_logo.png" alt="logo"></a>
 							</div>
 						</div>
 
@@ -57,7 +57,7 @@
 			</div>
 			<!-- .col-md-6 -->
 
-			<div class="col-md-6">
+			<div class="col-md-5">
 				<div class="block-right">
 					<div class="contact-area userArea">
 						<ul>
@@ -79,22 +79,34 @@
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-		<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+			<h4 class="modal-title" id="myModalLabel">Login</h4>
 	      </div>
 	      <div class="modal-body">
-		...
+			 <section class="login-form">
+				<form method="post" action="" role="login">
+					<div>
+						<img src="/upa/assets/images/main/upa_logo.png" alt="" id="login_logo"/>
+						<h5>어서오세요. 방문해주셔서 감사합니다.</h5>
+					</div>			
+					<input type="email" name="id" placeholder="ID" required class="form-control input-lg" style="margin-bottom:10px;"/>
+					<input type="password" name="password" placeholder="Password" required class="form-control input-lg" style="margin-bottom:10px;"/>
+					<button type="submit" name="go" class="btn btn-lg btn-block btn-info">Login</button>
+				</form>
+			  </section>
 	      </div>
-	      <div class="modal-footer">
-		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		<button type="button" class="btn btn-primary">Save changes</button>
+	      <div class="modal-footer" style="text-align: center;">
+			<div>
+				<a href="#" style="margin-left: 6px; float: left;">아이디/비밀번호 찾기</a>
+				<a href="#" style="margin-right: 10px; float: right;">회원가입</a>
+			</div>
 	      </div>
 	    </div>
 	  </div>
 	</div>
 </body>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="http://googledrive.com/host/0B-QKv6rUoIcGREtrRTljTlQ3OTg"></script><!-- ie10-viewport-bug-workaround.js -->
-<script src="http://googledrive.com/host/0B-QKv6rUoIcGeHd6VV9JczlHUjg"></script>
+<!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
+<!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
+<!-- <script src="http://googledrive.com/host/0B-QKv6rUoIcGREtrRTljTlQ3OTg"></script>ie10-viewport-bug-workaround.js -->
+<!-- <script src="http://googledrive.com/host/0B-QKv6rUoIcGeHd6VV9JczlHUjg"></script> -->
 </html>
