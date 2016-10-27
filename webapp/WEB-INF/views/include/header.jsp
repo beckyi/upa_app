@@ -36,7 +36,7 @@
 									class="icon-bar"></span>
 							</button>
 							<div class="nav-logo">
-								<a href="#"><img src="/upa/assets/images/main/upa_logo.png" alt="logo"></a>
+								<a href="/upa/main"><img src="/upa/assets/images/main/upa_logo.png" alt="logo"></a>
 							</div>
 						</div>
 
@@ -44,7 +44,7 @@
 						<div class="collapse navbar-collapse"
 							id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav move">
-								<li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
+								<li class="active"><a href="/upa/main">Home <span class="sr-only">(current)</span></a></li>
 								<li><a href="#">Features</a></li>
 								<li><a href="#">Parking Lot</a></li>
 								<li><a href="#">Gallery</a></li>
@@ -61,8 +61,8 @@
 				<div class="block-right">
 					<div class="contact-area userArea">
 						<ul>
-							<a href="#" data-toggle="modal" data-target="#myModal"><img id= "loginc" src="/upa/assets/images/user/login.png"><li><i class="login"></i>Login</li></a>
-							<a href="#"><img id= "signc" src="/upa/assets/images/user/signup.png"><li><i class="signup"></i>Sign up</li></a>
+							<li><a href="#" data-toggle="modal" data-target="#myModal"><img id= "loginc" src="/upa/assets/images/user/login.png"><li><i class="login"></i>Login</a></li>
+							<li><a href="/upa/user/joinform"><img id= "signc" src="/upa/assets/images/user/signup.png"><i class="signup"></i>Sign up</a></li>
 						</ul>
 					</div>
 				</div>
@@ -89,16 +89,16 @@
 						<img src="/upa/assets/images/main/upa_logo.png" alt="" id="login_logo"/>
 						<h5>어서오세요. 방문해주셔서 감사합니다.</h5>
 					</div>			
-					<input type="email" name="id" placeholder="ID" required class="form-control input-lg" style="margin-bottom:10px;"/>
-					<input type="password" name="password" placeholder="Password" required class="form-control input-lg" style="margin-bottom:10px;"/>
-					<button type="submit" name="go" class="btn btn-lg btn-block btn-info">Login</button>
+					<input type="email" id="id" name="id" placeholder="ID" required class="form-control input-lg" style="margin-bottom:10px;"/>
+					<input type="password" id="password" name="password" placeholder="Password" required class="form-control input-lg" style="margin-bottom:10px;"/>
+					<button type="button" name="login" id="btn_Login" class="btn btn-lg btn-block btn-info">Login</button>
 				</form>
 			  </section>
 	      </div>
 	      <div class="modal-footer" style="text-align: center;">
 			<div>
 				<a href="#" style="margin-left: 6px; float: left;">아이디/비밀번호 찾기</a>
-				<a href="#" style="margin-right: 10px; float: right;">회원가입</a>
+				<a href="/upa/user/joinform" style="margin-right: 10px; float: right;">회원가입</a>
 			</div>
 	      </div>
 	    </div>
@@ -109,4 +109,48 @@
 <!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
 <!-- <script src="http://googledrive.com/host/0B-QKv6rUoIcGREtrRTljTlQ3OTg"></script>ie10-viewport-bug-workaround.js -->
 <!-- <script src="http://googledrive.com/host/0B-QKv6rUoIcGeHd6VV9JczlHUjg"></script> -->
+<script>
+$(function() {	
+		 $("#btn_Login").on("click", function(){ 	
+			
+			if($("#id").val() == ""){
+				alert("아이디를 입력해주십시오.");
+				$("#id").focus();
+				return false;
+			} 
+			
+			if($("#password").val() == ""){
+				alert("비밀번호를 입력해주십시오.");
+				$("#password").focus();
+				return false;
+				}
+			
+			var id = $("#id").val();
+			var password = $("#password").val();
+		
+			$.ajax({	
+				url: "checkLogin",
+				type: "POST",
+				data: {"id":id, "password":password},
+				dataType: "text",
+				success: function(result){	//비동기식으로 진행되어 결과와 상관 없이 submit되므로 계속 refres됨(따로 동기식으로 변경해야함)
+					console.log(result);
+					if(result == "false"){
+						console.log(result);
+						alert("유효하지 않는 로그인입니다. 다시 시도해주세요.")
+						return false;
+					}
+					
+					 if(result == "true"){
+						location.href='/upa/main';
+					} 
+				},
+				
+				error: function(jsXHR, status, e){
+					console.error("error:"+status+":"+e);
+				}
+			});
+		});
+	});
+</script>
 </html>

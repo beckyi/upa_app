@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title></title>
+<title>UPA MAIN</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -17,17 +16,185 @@
 <link
 	href='http://fonts.googleapis.com/css?family=Droid+Serif:400,400italic,700'
 	rel='stylesheet' type='text/css'>
-
 <!-- <link rel="stylesheet" href="/upa/theme/css/slicknav.css">-->
 <!-- <link rel="stylesheet" href="/upa/theme/css/owl.theme.css">-->
 <!--<link rel="stylesheet" href="/upa/theme/css/owl.carousel.css">-->
 <!--<link rel="stylesheet" href="/upa/theme/css/owl.transitions.css">-->
 <!--<link rel="stylesheet" href="/upa/theme/css/font-awesome.min.css"> -->
 <!-- <link rel="stylesheet" href="/upa/resources/webjars/bootstrap-3.3.2-dist/css/bootstrap.min.css"> -->
+
 <link rel="stylesheet" href="/upa/theme/css/main.css">
 <link rel="stylesheet" href="/upa/theme/css/responsive.css">
 
 <script src="/upa/theme/js/vendor/modernizr-2.6.2.min.js"></script>
+
+<!-- 지도 -->
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=c0be589b60311ceeea226dd7d2e0e990"></script>
+ <script>
+$(function(){
+	
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	mapOption = { 
+	    center: new daum.maps.LatLng(37.5547992, 126.9684953),
+	    level: 4 // 지도의 확대 레벨
+	};
+	var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+	
+	$("#maptab1").click(function (){
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		mapOption = { 
+		    center: new daum.maps.LatLng(37.5547992, 126.9684953),
+		    level: 4 // 지도의 확대 레벨
+		};
+
+		var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+		
+		var positions = [
+          	<c:forEach var = 'vo' items='${mapvo }' varStatus='s'>
+          	{
+          	   content: '${vo.name}', 
+          	   latlng: new daum.maps.LatLng('${vo.localx}', '${vo.localy}')
+          	},
+          	</c:forEach>
+          ];
+
+          for (var i = 0; i < positions.length; i ++) {
+              // 마커를 생성합니다
+          	  var marker = new daum.maps.Marker({
+          	        map: map, // 마커를 표시할 지도
+          	        position: positions[i].latlng // 마커의 위치
+          	        
+          	    });
+          	    // 마커에 표시할 인포윈도우를 생성합니다 
+          	    var infowindow = new daum.maps.InfoWindow({
+          	        content: positions[i].content // 인포윈도우에 표시할 내용
+          	    });
+          	    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+          	    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
+          	    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+          	    daum.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+          	    daum.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+          	}
+	});
+	
+	$("#maptab2").click(function (){
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		mapOption = { 
+		    center: new daum.maps.LatLng(37.3800181, 126.9264755),
+		    level: 4 // 지도의 확대 레벨
+		};
+
+		var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+		
+		var positions = [
+           	<c:forEach var = 'vo' items='${mapvo }' varStatus='s'>
+           	{
+           	   content: '${vo.name}', 
+           	   latlng: new daum.maps.LatLng('${vo.localx}', '${vo.localy}')
+           	},
+           	</c:forEach>
+           ];
+
+           for (var i = 0; i < positions.length; i ++) {
+               // 마커를 생성합니다
+           	  var marker = new daum.maps.Marker({
+           	        map: map, // 마커를 표시할 지도
+           	        position: positions[i].latlng // 마커의 위치
+           	        
+           	    });
+           	    // 마커에 표시할 인포윈도우를 생성합니다 
+           	    var infowindow = new daum.maps.InfoWindow({
+           	        content: positions[i].content // 인포윈도우에 표시할 내용
+           	    });
+           	    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+           	    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
+           	    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+           	    daum.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+           	    daum.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+           	}
+	});
+	
+	$("#maptab3").click(function (){
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		mapOption = { 
+		    center: new daum.maps.LatLng(37.503463, 126.72378),
+		    level: 4// 지도의 확대 레벨
+		};
+
+		var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+		
+		var positions = [
+         	<c:forEach var = 'vo' items='${mapvo }' varStatus='s'>
+         	{
+         	   content: '${vo.name}', 
+         	   latlng: new daum.maps.LatLng('${vo.localx}', '${vo.localy}')
+         	},
+         	</c:forEach>
+         ];
+
+         for (var i = 0; i < positions.length; i ++) {
+             // 마커를 생성합니다
+         	  var marker = new daum.maps.Marker({
+         	        map: map, // 마커를 표시할 지도
+         	        position: positions[i].latlng // 마커의 위치
+         	        
+         	    });
+         	    // 마커에 표시할 인포윈도우를 생성합니다 
+         	    var infowindow = new daum.maps.InfoWindow({
+         	        content: positions[i].content // 인포윈도우에 표시할 내용
+         	    });
+         	    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+         	    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
+         	    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+         	    daum.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+         	    daum.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+         	}
+	});
+		
+//마커를 표시할 위치와 title 객체 배열입니다 
+var positions = [
+	<c:forEach var = 'vo' items='${mapvo }' varStatus='s'>
+	{
+	   content: '${vo.name}', 
+	   latlng: new daum.maps.LatLng('${vo.localx}', '${vo.localy}')
+	},
+	</c:forEach>
+];
+
+for (var i = 0; i < positions.length; i ++) {
+    // 마커를 생성합니다
+	  var marker = new daum.maps.Marker({
+	        map: map, // 마커를 표시할 지도
+	        position: positions[i].latlng // 마커의 위치
+	        
+	    });
+	    // 마커에 표시할 인포윈도우를 생성합니다 
+	    var infowindow = new daum.maps.InfoWindow({
+	        content: positions[i].content // 인포윈도우에 표시할 내용
+	    });
+	    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+	    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
+	    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+	    daum.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+	    daum.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+	}
+
+// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+function makeOverListener(map, marker, infowindow) {
+    return function() {
+        infowindow.open(map, marker);
+    };
+}
+
+// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+function makeOutListener(infowindow) {
+    return function() {
+        infowindow.close();
+    };
+}
+
+});
+</script>
 </head>
 <body>
 	<!--[if lt IE 7]>
@@ -225,7 +392,13 @@
 			<div class="col-md-6">
 				<div class="block-right">
 					<div class="block-right-img">
-						<img src="img/mobile-phon-1.png" alt="img">
+						<div class="fb_box">
+							<div id="happy">
+							<p align="middle">
+							<iframe width="600" height="400" src="https://www.youtube.com/embed/TOwRyMilFGQ" frameborder="0" allowfullscreen style="margin-top:65px;"></iframe>
+							</p>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -263,79 +436,21 @@
 			<div class="col-md-12">
 				<div class="block-bottom">
 					<div class="gallery-list" id="owl-demo">
+						<div class="gallery-items item">
+							<div class="gallery-img">
+								<img src="img/mobile-phon-2.png" alt="img">
+								<div id="map"></div>
+							</div>
+							<div class="gallery-items-text">
+								<p>
+									Duis bibendum diam non erat facilaisis <br> tincidunt.
+									Fusce leo neque, lacinia at <br> tempor vitae, porta at
+									arcu.
+								</p>
+							</div>
+						</div>
+						
 						<!-- <div class="gallery-items item">
-							<div class="gallery-img">
-								<img src="img/mobile-phon-2.png" alt="img">
-							</div>
-							<div class="gallery-items-text">
-								<p>
-									Duis bibendum diam non erat facilaisis <br> tincidunt.
-									Fusce leo neque, lacinia at <br> tempor vitae, porta at
-									arcu.
-								</p>
-							</div>
-						</div>
-						<div class="gallery-items item">
-							<div class="gallery-img">
-								<img src="img/mobile-phon-2.png" alt="img">
-							</div>
-							<div class="gallery-items-text">
-								<p>
-									Duis bibendum diam non erat facilaisis <br> tincidunt.
-									Fusce leo neque, lacinia at <br> tempor vitae, porta at
-									arcu.
-								</p>
-							</div>
-						</div>
-						<div class="gallery-items item">
-							<div class="gallery-img">
-								<img src="img/mobile-phon-2.png" alt="img">
-							</div>
-							<div class="gallery-items-text">
-								<p>
-									Duis bibendum diam non erat facilaisis <br> tincidunt.
-									Fusce leo neque, lacinia at <br> tempor vitae, porta at
-									arcu.
-								</p>
-							</div>
-						</div>
-						<div class="gallery-items item">
-							<div class="gallery-img">
-								<img src="img/mobile-phon-2.png" alt="img">
-							</div>
-							<div class="gallery-items-text">
-								<p>
-									Duis bibendum diam non erat facilaisis <br> tincidunt.
-									Fusce leo neque, lacinia at <br> tempor vitae, porta at
-									arcu.
-								</p>
-							</div>
-						</div>
-						<div class="gallery-items item">
-							<div class="gallery-img">
-								<img src="img/mobile-phon-2.png" alt="img">
-							</div>
-							<div class="gallery-items-text">
-								<p>
-									Duis bibendum diam non erat facilaisis <br> tincidunt.
-									Fusce leo neque, lacinia at <br> tempor vitae, porta at
-									arcu.
-								</p>
-							</div>
-						</div>
-						<div class="gallery-items item">
-							<div class="gallery-img">
-								<img src="img/mobile-phon-2.png" alt="img">
-							</div>
-							<div class="gallery-items-text">
-								<p>
-									Duis bibendum diam non erat facilaisis <br> tincidunt.
-									Fusce leo neque, lacinia at <br> tempor vitae, porta at
-									arcu.
-								</p>
-							</div>
-						</div>
-						<div class="gallery-items item">
 							<div class="gallery-img">
 								<img src="img/mobile-phon-2.png" alt="img">
 							</div>
@@ -494,41 +609,8 @@
 	<!-- #submit close -->
 
 
-	<!-- footer Start
-        ====================================================================== -->
-
-	<section id="footer">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="block">
-					<div class="footer-contant">
-						<h3>Say Hi, Get In Touch</h3>
-						<div class="social-icon">
-							<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
-								class="fa fa-tumblr"></i></a> <a href="#"><i
-								class="fa fa-google"></i></a> <a href="#"><i
-								class="fa fa-flickr"></i></a> <a href="#"><i
-								class="fa fa-youtube"></i></a>
-						</div>
-						<div class="support-link">
-							<ul>
-								<li><a href="#">Contact</a></li>
-								<li><a href="#">Twitter</a></li>
-								<li><a href="#">Press</a></li>
-								<li><a href="#">Support</a></li>
-								<li><a href="#">Developers</a></li>
-								<li><a href="#">Privacy</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- col-md-12 -->
-		</div>
-		<!-- .row -->
-	</div>
-	<!-- .container --> </section>
+	<!-- footer Start -->
+	<jsp:include page="/WEB-INF/views/include/footer.jsp" />
 	<!-- #footer -->
 
 	<<!-- script

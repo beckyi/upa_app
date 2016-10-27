@@ -1,36 +1,28 @@
-//package kr.ac.sungkyul.upa.controller;
-//
+package kr.ac.sungkyul.upa.controller;
+
 //import java.util.Map;
-//
-//import javax.servlet.http.HttpSession;
-//
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Controller;
-//import org.springframework.ui.Model;
-//import org.springframework.web.bind.annotation.ModelAttribute;
-//import org.springframework.web.bind.annotation.PathVariable;
-//import org.springframework.web.bind.annotation.RequestBody;
-////import org.springframework.web.bind.annotation.RequestBody;
-////import org.springframework.web.bind.annotation.RequestBody;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RequestMethod;
-//import org.springframework.web.bind.annotation.RequestParam;
-//import org.springframework.web.bind.annotation.ResponseBody;
-//
-//import kr.ac.sungkyul.gs25.service.UserService;
-//import kr.ac.sungkyul.gs25.vo.UserVo;
-//
-//@Controller
-//@RequestMapping("/user")
-//public class UserController {
-//	
-//	@Autowired
-//	UserService userService;
-//	
-//	@RequestMapping("/joinform")
-//	public String joinform(){
-//		return "user/joinform";
-//	}
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import kr.ac.sungkyul.upa.service.UserService;
+import kr.ac.sungkyul.upa.vo.UserVo;
+
+@Controller
+@RequestMapping("/user")
+public class UserController {
+	
+	@Autowired
+	UserService userservice;
+
+	@RequestMapping("/joinform")
+	public String joinform(){
+		return "user/joinform";
+	}
 //	
 //	@RequestMapping("/join")
 //	public String join(@ModelAttribute UserVo vo){
@@ -49,46 +41,30 @@
 //		return "user/loginform";
 //	}
 //	
-////	@RequestMapping(value= "/login")
-////	public String login(
-////			HttpSession session, Model model,
-////			@RequestParam(value= "email", required=false, defaultValue="") String email,
-////			@RequestParam(value="password", required=false, defaultValue="") String password){
-////
-////		UserVo authUser =  userService.login(email,  password);
-////
-////		if(authUser == null){
-////			Boolean result = true;
-////			model.addAttribute("result",result);
-////			return "user/loginform";	//html(jsp)화면만 
-////		}
-////		
-////		//인증성공
-////		session.setAttribute("authUser",authUser);
-////		return "redirect:/main";
-////	}
-//	
-//	//1. Ajax 사용 시 - DB (로그인 정보 비교)
-//	@ResponseBody
-//	@RequestMapping(value = "checkLogin", method = RequestMethod.POST)
-//	public String checkId(String email, String password, HttpSession session) {	//Request 객체받음, script or DB 객체 분별
-//
-//		UserVo authUser =  userService.login(email,  password);
-//
-//		String result = "true";
-//		
-//		if(authUser == null){
-//			result = "false";
-//		}
-//		else {
-//			//인증성공
-//			session.setAttribute("authUser",authUser);
-//			result = "true";
-//		}
-//		return result;
-//		
-//	}
-//	
+	//1. Ajax 사용 시 - DB (로그인 정보 비교)
+	@ResponseBody
+	@RequestMapping(value = "checkLogin", method = RequestMethod.POST)
+	public String checkId(String id, String password, HttpSession session) {	//Request 객체받음, script or DB 객체 분별
+		
+		System.out.println("controll "+id+" "+password);
+		
+		UserVo authUser =  userservice.login(id,  password);
+		System.out.println(authUser.toString());
+		
+		String result = "true";
+		
+		if(authUser == null){
+			result = "false";
+		}
+		else {
+			//인증성공
+			session.setAttribute("authUser",authUser);
+			result = "true";
+		}
+		return result;
+		
+	}
+	
 //	@RequestMapping("/logout")
 //	public String logout(HttpSession session){
 //		session.removeAttribute("authUser");
@@ -211,4 +187,4 @@
 //		
 //		return "user/mlist";
 //	}
-//}
+}
